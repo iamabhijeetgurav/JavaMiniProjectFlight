@@ -6,16 +6,27 @@ public class User {
 	private String lastName;
 	private String email;
 	private String password;
+	private String mobile;
 	private String role;
 
-	public User(int id, String firstName, String lastName, String email, String password, String role) {
+	public User(int id, String firstName, String lastName, String email, String password, String mobile, String role) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
+		this.mobile = mobile;
 		this.role = role;
+	}
+
+	public User(String firstName, String lastName, String email, String password, String mobile) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
+		this.mobile = mobile;
 	}
 
 	public User(int id, String firstName, String lastName, String email) {
@@ -64,6 +75,14 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
 	}
 
 	public String getRole() {

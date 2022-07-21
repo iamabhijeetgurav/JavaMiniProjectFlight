@@ -13,16 +13,36 @@ import com.cybage.utility.JDBCUtility;
 public class UserDaoImpl implements IUserDAO {
 
 	@Override
-	public User addUser(User user) {
-		
-		return user;
+	public boolean addUser(User user) {
+		String url="insert into user(first_name, last_name, email, password, mobile, role) values(?,?,?,?,?,?)";																				
+		String role="user";
+		boolean flag=false;
+		System.out.println(user);
+		try(Connection cn= JDBCUtility.getConnection();
+				PreparedStatement pst= cn.prepareStatement(url);){
+			pst.setString(1, user.getFirstName());
+			pst.setString(2, user.getLastName());
+			pst.setString(3, user.getEmail());
+			pst.setString(4, user.getPassword());
+			pst.setString(5, user.getMobile());
+			pst.setString(6, role);
+			int result=pst.executeUpdate();
+			if(result>0) {
+				flag=true;
+				System.out.println("Data added succesfully");
+				return flag;
+			}
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 	@Override
 	public List<User> getAllUsers() {
 		List<User> userList=new ArrayList<User>();
 		User user= null;
-		String url = "select * from user where role='user'";
+		String url = "select * from user where role='user';";
 		try (Connection cn = JDBCUtility.getConnection(); PreparedStatement pst = cn.prepareStatement(url);) {
 			ResultSet rs = pst.executeQuery();
 			while(rs.next()) {

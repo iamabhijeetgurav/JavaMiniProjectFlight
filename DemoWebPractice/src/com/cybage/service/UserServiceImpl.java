@@ -11,7 +11,7 @@ public class UserServiceImpl implements UserService {
 	private IUserDAO userDao = new UserDaoImpl();
 
 	@Override
-	public User addUser(User user) {
+	public boolean addUser(User user) {
 		return userDao.addUser(user);
 	}
 

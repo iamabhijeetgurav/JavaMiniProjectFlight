@@ -6,5 +6,5 @@ import com.cybage.model.User;
 
 public interface IUserDAO {
 	List<User> getAllUsers();
-	User addUser(User user);
+	boolean addUser(User user);
 }
