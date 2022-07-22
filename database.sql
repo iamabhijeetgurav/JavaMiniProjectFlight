@@ -29,15 +29,16 @@ create table flight(
     destination varchar(100),
     flight_type varchar(10),
     flight_fare double(7,2),
-    bool is_available
+	no_of_seats integer default 132,
+    is_available bool default true
 );
 
 insert into flight
-(id, flight_name, arrival_time, departure_time, flight_type, flight_fare)
+(id, flight_name, arrival_time, departure_time, source, destination, flight_type, flight_fare)
 values
-(101, "Vistara", "12:30:00", "23:30:00", "Business", 24569.65),
-(102, "Vistara", "08:30:00", "23:30:00", "Economy", 24569.65),
-(103, "Vistara", "06:30:00", "14:30:00", "Economy", 14569.65);
+(101, "Vistara", "12:30:00", "23:30:00","pune", "mumbai", "Business", 24569.65),
+(102, "Vistara", "08:30:00", "23:30:00","pune", "delhi", "Economy", 24569.65),
+(103, "Vistara", "06:30:00", "14:30:00","pune", "kolkata", "Economy", 14569.65);
 
 create table booking(
     id integer primary key auto_increment,
@@ -50,22 +51,31 @@ create table booking(
     insert_ts timestamp DEFAULT CURRENT_TIMESTAMP
 );
 
-insert into jobCard
-(id, schedule_date, schedule_time, source, destination, no_of_passengers, user_id, flight_id)
+insert into booking
+(id, schedule_date, no_of_passengers, user_id, flight_id)
 values
-(2022001, "2022/07/19", "12:30:00", "Delhi", "SriLanka", "4", 1, 101),
-(2022002, "2022/07/20", "14:30:00", "Mumbai", "Pune", "2", 2, 101),
-(2022003, "2022/07/20", "16:30:00", "Mumbai", "Kolhapur", "3", 3, 103);
+(2022001, "4", 1, 101),
+(2022002, "2", 2, 101),
+(2022003, "3", 3, 103);
 
+create table passenger(
+	id integer primary key auto_increment,
+	first_name varchar(50),
+	last_name varchar(50),
+	user_id integer,
+	foreign key (user_id) references user(id)
+);
 
-
-
-
-
-------//////-----
-no_of_seats(flight)
-bool isAvailable 0 false
-
+create table feedback(
+	id integer primary key auto_increment,
+	user_id integer,
+    	booking_id integer,
+	rating integer default 1,
+	description varchar(300),
+    	foreign key (user_id) references user(id),
+    	foreign key (booking_id) references booking(id),
+   	insert_ts timestamp DEFAULT CURRENT_TIMESTAMP
+);
 
 
 
