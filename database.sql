@@ -72,6 +72,7 @@ create table feedback(
     	booking_id integer,
 	rating integer default 1,
 	description varchar(300),
+	issue varchar(300),
     	foreign key (user_id) references user(id),
     	foreign key (booking_id) references booking(id),
    	insert_ts timestamp DEFAULT CURRENT_TIMESTAMP
