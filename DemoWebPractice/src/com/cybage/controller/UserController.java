@@ -1,7 +1,7 @@
 package com.cybage.controller;
 
 import java.io.IOException;
-import java.util.List;
+//import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cybage.model.User;
-import com.cybage.service.UserService;
-import com.cybage.service.UserServiceImpl;
+import com.cybage.services.UserService;
+import com.cybage.services.UserServiceImpl;
 
 /**
  * Servlet implementation class UserController
@@ -43,7 +43,8 @@ public class UserController extends HttpServlet {
 			String email=request.getParameter("user-email");
 			String password=request.getParameter("user-password");
 			String mobile=request.getParameter("user-mobile");
-			User user= new User(firstName, lastName, email, password, mobile);
+			String role = request.getParameter("user-role");
+			User user= new User(0, firstName, lastName, email, password, mobile,role);
 			userService.addUser(user);
 			request.getRequestDispatcher("Login.jsp").forward(request, response);
 		}
