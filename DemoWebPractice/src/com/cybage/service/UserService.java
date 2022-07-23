@@ -6,5 +6,5 @@ import com.cybage.model.User;
 
 public interface UserService {
 	List<User> getAllUsers();
-	boolean addUser(User user);
+	User addUser(User user);
 }
