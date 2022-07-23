@@ -11,7 +11,13 @@ public class UserServiceImpl implements UserService {
 	private IUserDAO userDao = new UserDaoImpl();
 
 	@Override
-	public User addUser(User user) {
+	public boolean checkUser(String email, String password) {
+		
+		return userDao.checkUser(email, password);
+	}
+
+	@Override
+	public boolean addUser(User user) {
 		return userDao.addUser(user);
 	}
 

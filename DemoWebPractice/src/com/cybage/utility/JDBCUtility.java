@@ -8,7 +8,7 @@ public class JDBCUtility {
 	private static Connection cn = null;
 
 	public static Connection getConnection() throws SQLException {
-		String url = "jdbc:mysql://localhost:3306/miniprojectjava";
+		String url = "jdbc:mysql://localhost:3306/miniprojectjava?useSSL=false&autoReconnect=true";
 		if (cn == null) {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
