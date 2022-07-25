@@ -39,13 +39,13 @@ public class AddFlightController extends HttpServlet {
 
 		// | id | flight_name | arrival_time | departure_time | source | destination |
 		// flight_type | flight_fare | no_of_seats | is_available |
-		String flightName = "Ethihad";
-		Time arrivalTime = Time.valueOf("13:30:00");
-		Time departureTime = Time.valueOf("24:00:00");
-		String source = "Mumbai";
-		String destination = "Goa";
-		String flightType = "Business";
-		double flightFare = 11455.80;
+		String flightName =request.getParameter("flight-name");
+		Time arrivalTime = Time.valueOf(request.getParameter("departureTime"));
+		Time departureTime = Time.valueOf(request.getParameter("arrivalTime"));
+		String source = request.getParameter("source");
+		String destination = request.getParameter("destination");
+		String flightType = request.getParameter("flightType");
+		double flightFare = Double.parseDouble(request.getParameter("flightFare"));
 		Flight flight = new Flight(flightName, arrivalTime, departureTime, source, destination, flightType, flightFare);
 		adminService.addFlight(flight);
 		request.getRequestDispatcher("admin.jsp").forward(request, response);

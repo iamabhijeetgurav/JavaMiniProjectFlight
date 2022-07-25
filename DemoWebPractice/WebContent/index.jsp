@@ -15,6 +15,32 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
+<style type="text/css">
+.flight-list {
+	box-shadow: 1px 8px 15px black;
+	padding: 16px;
+	border-radius: 5px;
+	margin-top: 10px;
+}
+
+.book-option {
+	font-size: 25px;
+}
+
+.book-option a{
+	text-decoration: none;
+	color: black;
+}
+
+.book-value {
+	font-size: 20px;
+}
+
+.book-title {
+	font-weight: bolder;
+	font-size: 25px;
+}
+</style>
 </head>
 <body>
 	<div class="container">
@@ -69,32 +95,62 @@
 		</div>
 
 		<div class="flight-list">
-		<form action="${pageContext.request.contextPath}/BookTicketController" method="post">
-			<c:forEach items="${sessionScope.flightslist}" var="flights">
-				<div>Name</div>
-				<c:out value="${flights.flightName}"></c:out>
-				<div>From</div>
-				<c:out value="${flights.source}"></c:out>
-				<div>To</div>
-				<c:out value="${flights.destination}"></c:out>
-				<div>Arrival Time</div>
-				<c:out value="${flights.arrivalTime}"></c:out>
-				<div>DepartureTime</div>
-				<c:out value="${flights.departureTime}"></c:out>
-				<div>Type</div>
-				<c:out value="${flights.flightType}"></c:out>
-				<div>FlightFare</div>
-				<c:out value="${flights.flightFare}"></c:out>
-				<div>
-					<input type="submit" value="Book">
-				</div>
-			</c:forEach>
-			
-		</form>
-			
-
+			<form method="post">
+				<c:forEach items="${sessionScope.flightslist}" var="flights">
+					<div class="row">
+						<div class="col">
+							<div class="book-title">Name</div>
+							<div class="book-value">
+								<c:out value="${flights.flightName}"></c:out>
+							</div>
+						</div>
+						<div class="col">
+							<div class="book-title">From</div>
+							<div class="book-value">
+								<c:out value="${flights.source}"></c:out>
+							</div>
+						</div>
+						<div class="col">
+							<div class="book-title">To</div>
+							<div class="book-value">
+								<c:out value="${flights.destination}"></c:out>
+							</div>
+						</div>
+						<div class="col">
+							<div class="book-title">Arrival Time</div>
+							<div class="book-value">
+								<c:out value="${flights.arrivalTime}"></c:out>
+							</div>
+						</div>
+						<div class="col">
+							<div class="book-title">DepartureTime</div>
+							<div class="book-value">
+								<c:out value="${flights.departureTime}"></c:out>
+							</div>
+						</div>
+						<div class="col">
+							<div class="book-title">Type</div>
+							<div class="book-value">
+								<c:out value="${flights.flightType}"></c:out>
+							</div>
+						</div>
+						<div class="col">
+							<div class="book-title">FlightFare</div>
+							<div class="book-value">
+								<c:out value="${flights.flightFare} Rs"></c:out>
+							</div>
+						</div>
+						<div class="col">
+							<div class="book-option">
+								<button class="btn btn-primary">
+									<a href="BookATicket.jsp">Book</a>
+								</button>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</form>
 		</div>
-
 	</div>
 </body>
 <script type="text/javascript">
