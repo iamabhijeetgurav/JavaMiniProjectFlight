@@ -1,6 +1,8 @@
 package com.cybage.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -33,19 +35,28 @@ public class UserController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		List<User> userlist= userService.getAllUsers();
-//		System.out.println(userlist);
+
 		
+		PrintWriter pw=response.getWriter();		
 		if(request.getParameter("user-email")!=null) {
 			String firstName=request.getParameter("first-name");
-			System.out.println(firstName);
+//			System.out.println(firstName);
 			String lastName=request.getParameter("last-name");
 			String email=request.getParameter("user-email");
 			String password=request.getParameter("user-password");
 			String mobile=request.getParameter("user-mobile");
 			User user= new User(firstName, lastName, email, password, mobile);
-			userService.addUser(user);
-			request.getRequestDispatcher("Login.jsp").forward(request, response);
+			try {
+				if(userService.addUser(user)) {
+					request.getRequestDispatcher("Login.jsp").forward(request, response);
+				}else {
+					pw.write("Somethings Wrong");
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 		
 	}

@@ -21,5 +21,9 @@ public class JDBCUtility {
 
 		return cn;
 	}
-
+	public static void closeConnection() throws SQLException {
+		if(cn!=null) {
+			cn.close();
+		}
+	}
 }

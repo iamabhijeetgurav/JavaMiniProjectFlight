@@ -18,7 +18,7 @@
 		<div class="row">
 			<div class="col"></div>
 			<div class="col">
-				<form action="FeedbackController" method="post">
+				<form action="${pageContext.request.contextPath}/FeedbackController" method="post">
 					<div class="form-group">
 						<label>Enter the User Id:</label> <input type="number"
 							class="form-control" name="user-id" aria-describedby="emailHelp"
@@ -46,11 +46,7 @@
 			</div>
 			<div class="col"></div>
 		</div>
-
-
 	</div>
-
-
 
 </body>
 </html>

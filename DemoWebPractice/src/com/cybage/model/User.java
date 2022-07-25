@@ -29,12 +29,12 @@ public class User {
 		this.mobile = mobile;
 	}
 
-	public User(int id, String firstName, String lastName, String email) {
+	public User(int id, String firstName, String lastName, String role) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.email = email;
+		this.role = role;
 	}
 
 	public int getId() {

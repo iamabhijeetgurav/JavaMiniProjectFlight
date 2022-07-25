@@ -1,6 +1,8 @@
 package com.cybage.controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,14 +10,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.cybage.model.Feedback;
-import com.cybage.services.UserServiceImpl;
+import com.cybage.service.UserServiceImpl;
+
 
 /**
  * Servlet implementation class FeedbackController
  */
 @WebServlet("/FeedbackController")
 public class FeedbackController extends HttpServlet {
-	UserServiceImpl userServiceImpl = new UserServiceImpl();
+	private UserServiceImpl userServiceImpl = new UserServiceImpl();
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -35,9 +38,13 @@ public class FeedbackController extends HttpServlet {
 		int bookingId = Integer.parseInt(request.getParameter("booking-id"));
 		String description = request.getParameter("description");
 		Feedback feedback = new Feedback(userId,bookingId,rating,description);
-		userServiceImpl.addFeedback(feedback);
-		request.getRequestDispatcher("index.jsp").forward(request, response);
-		
+		try {
+			userServiceImpl.addFeedback(feedback);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

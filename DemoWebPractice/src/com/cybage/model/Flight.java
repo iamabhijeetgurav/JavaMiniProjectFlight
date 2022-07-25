@@ -34,6 +34,19 @@ public class Flight {
 		this.isAvailable = isAvailable;
 	}
 
+	public Flight(String flightName, Time arrivalTime, Time departureTime, String source, String destination,
+			String flightType, double flightFare) {
+		super();
+		this.flightName = flightName;
+		this.arrivalTime = arrivalTime;
+		this.departureTime = departureTime;
+		this.source = source;
+		this.destination = destination;
+		this.flightType = flightType;
+		this.flightFare = flightFare;
+		
+	}
+
 	public int getId() {
 		return id;
 	}
